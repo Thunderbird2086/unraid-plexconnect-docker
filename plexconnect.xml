@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container>
+  <Beta>False</Beta>
+  <Category>Network:Web Network:DNS MediaServer:Video</Category>
+  <Name>PlexConnect</Name>
+  <Description>
+  This is a Dockerfile setup for PlexConnect - https://github.com/iBaa/PlexConnect.[br]This is a fork from needo PlexConnect docker.[br][br]
+  This run the latest PlexConnect from master branch and add support for PIL background by installing Python-imaging.[br]
+  [b][span style='color: #E80000;']Directions:[/span][/b][br]
+    Note: PlexConnect by default use ports 80 and 443, Unraid WebUI also use port 80. You need to either use the other ports for PlexConnect and use Reverse-Proxy -OR- change the Unraid WebUI port by editing go file on boot device.[br]
+    [b]/mnt/cache/appdata/plexconnect[/b] : this path is used to store the PlexConnect SSL Certificates.[br]
+    [b]/config[/b] : this path is used to store the Settings.cfg outside of the Docker Container for easy edit.[br]
+ </Description>
+  <Registry>https://registry.hub.docker.com/r/didstopia/docker-plexconnect/</Registry>
+  <GitHub>https://github.com/Thunderbird2086/unraid-docker-templates</GitHub>
+  <Repository>Thunderbird2086/plexconnect</Repository>
+  <BindTime>true</BindTime>
+  <Privileged>false</Privileged>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish>
+      <Port>
+        <HostPort>80</HostPort>
+        <ContainerPort>80</ContainerPort>
+        <Protocol>tcp</Protocol>
+        <Name>Http Port</Name>
+      </Port>
+      <Port>
+        <HostPort>53</HostPort>
+        <ContainerPort>53</ContainerPort>
+        <Protocol>tcp</Protocol>
+        <Name>TCP Port</Name>
+      </Port>
+      <Port>
+        <HostPort>443</HostPort>
+        <ContainerPort>443</ContainerPort>
+        <Protocol>tcp</Protocol>
+        <Name>Https Port</Name>
+      </Port>
+    </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/cache/appdata/plexconnect/</HostDir>
+      <ContainerDir>/opt/plexconnect/assets/certificates</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/cache/appdata/plexconnect/</HostDir>
+      <ContainerDir>/config</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Environment>
+    <Variable>
+      <Value>True</Value>
+      <Name>PLEXCONNECT_ENABLE_PLEXGDM</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value></Value>
+      <Name>PLEXCONNECT_IP_PMS</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>32400</Value>
+      <Name>PLEXCONNECT_PORT_PMS</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>8.8.8.8</Value>
+      <Name>PLEXCONNECT_IP_DNSMASTER</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>True</Value>
+      <Name>PLEXCONNECT_PREVENT_ATV_UPDATE</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>trailers.apple.com</Value>
+      <Name>PLEXCONNECT_HOSTTOINTERCEPT</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>Normal</Value>
+      <Name>PLEXCONNECT_LOGLEVEL</Name>
+      <Mode/>
+    </Variable>
+  </Environment>
+  <Version></Version>
+  <WebUI>http://[IP]:[PORT:80]/</WebUI>
+  <Banner>https://raw.githubusercontent.com/Thunderbird2086/unraid-plexconnect-docker/master/img/plexconnect.banner.png</Banner>
+  <Banner>https://raw.githubusercontent.com/Thunderbird2086/unraid-plexconnect-docker/master/img/plexconnect.icon.png</Banner>
+</Container>
