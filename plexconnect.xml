@@ -11,9 +11,8 @@
     [b]/mnt/cache/appdata/plexconnect[/b] : this path is used to store the PlexConnect SSL Certificates.[br]
     [b]/config[/b] : this path is used to store the Settings.cfg outside of the Docker Container for easy edit.[br]
  </Description>
-  <Registry>https://registry.hub.docker.com/r/didstopia/docker-plexconnect/</Registry>
-  <GitHub>https://github.com/Thunderbird2086/unraid-docker-templates</GitHub>
-  <Repository>Thunderbird2086/plexconnect</Repository>
+  <Registry>https://hub.docker.com/r/thunderbird2086/plexconnect/</Registry>
+  <Repository>thunderbird2086/plexconnect</Repository>
   <BindTime>true</BindTime>
   <Privileged>false</Privileged>
   <Networking>
@@ -41,11 +40,13 @@
   </Networking>
   <Data>
     <Volume>
+      <Name>Certificate Path</Name>
       <HostDir>/mnt/cache/appdata/plexconnect/</HostDir>
-      <ContainerDir>/opt/plexconnect/assets/certificates</ContainerDir>
+      <ContainerDir>/opt/PlexConnect/assets/certificates</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
     <Volume>
+      <Name>Settings Path</Name>
       <HostDir>/mnt/cache/appdata/plexconnect/</HostDir>
       <ContainerDir>/config</ContainerDir>
       <Mode>rw</Mode>
@@ -91,5 +92,5 @@
   <Version></Version>
   <WebUI>http://[IP]:[PORT:80]/</WebUI>
   <Banner>https://raw.githubusercontent.com/Thunderbird2086/unraid-plexconnect-docker/master/img/plexconnect.banner.png</Banner>
-  <Banner>https://raw.githubusercontent.com/Thunderbird2086/unraid-plexconnect-docker/master/img/plexconnect.icon.png</Banner>
+  <Icon>https://raw.githubusercontent.com/Thunderbird2086/unraid-plexconnect-docker/master/img/plexconnect.icon.png</Icon>
 </Container>
